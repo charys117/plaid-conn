@@ -1,0 +1,16 @@
+{
+  "profiles": [
+    {
+      "key": "primary",
+      "displayName": "Personal Plaid Trial",
+      "environment": "sandbox",
+      "clientIdEnv": "PLAID_PRIMARY_CLIENT_ID",
+      "secretEnv": "PLAID_PRIMARY_SECRET",
+      "countryCodes": ["US"],
+      "language": "en",
+      "redirectUri": "http://localhost:3000/oauth-return",
+      "daysRequested": 730,
+      "enabled": true
+    }
+  ]
+}

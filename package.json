@@ -1,0 +1,62 @@
+{
+  "name": "plaid-conn",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsup src/server/index.ts src/worker/index.ts src/cli/migrate.ts --format esm --out-dir dist/server --sourcemap --clean && vite build",
+    "build:server": "tsup src/server/index.ts src/worker/index.ts src/cli/migrate.ts --format esm --out-dir dist/server --sourcemap --clean",
+    "build:web": "vite build",
+    "dev": "concurrently -k -n server,worker,web -c blue,magenta,green \"tsx watch src/server/index.ts\" \"tsx watch src/worker/index.ts\" \"vite\"",
+    "dev:server": "tsx watch src/server/index.ts",
+    "dev:worker": "tsx watch src/worker/index.ts",
+    "dev:web": "vite",
+    "start": "node dist/server/server/index.js",
+    "start:worker": "node dist/server/worker/index.js",
+    "migrate": "tsx src/cli/migrate.ts",
+    "migrate:prod": "node dist/server/cli/migrate.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.2",
+    "@fastify/helmet": "^13.1.0",
+    "@fastify/rate-limit": "^11.1.0",
+    "@fastify/static": "^10.1.2",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.10.0",
+    "jose": "^6.2.4",
+    "pg": "^8.22.0",
+    "pino": "^10.3.1",
+    "plaid": "^45.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-plaid-link": "^5.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.4",
+    "@types/node": "^26.1.1",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "concurrently": "^10.0.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10",
+    "yaml": "^2.9.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

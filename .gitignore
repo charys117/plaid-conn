@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+output/
+.playwright-cli/
+.env
+config/plaid-profiles.json
+*.log
+.DS_Store
+.idea/
+.vscode/
